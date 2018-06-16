@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class Railgun : MonoBehaviour {
 
-	public bool isShooting {
+    [SerializeField]
+    private Turret myGun;
+    [SerializeField]
+    private bool shouldFire;
+
+    public AudioClip railgun_activate;
+    Animator animator;
+    AudioSource _audio;
+
+    private bool _shooting = false;
+    private bool _active = false;
+
+    public bool isShooting {
 		get {return _shooting;}
 		set {
 			animator.SetBool("shooting", value);
@@ -23,19 +35,16 @@ public class Railgun : MonoBehaviour {
 		}
 	}
 
-	public AudioClip railgun_activate;
-	Animator animator;
-	AudioSource _audio;
-
-	private bool _shooting = false;
-	private bool _active = false;
-	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
 		_audio = GetComponent<AudioSource>();
 	}	
 
-	public void FireLaser () {
-		_audio.Play();
+	public void FireLaser (string whichone) {
+        if (shouldFire)
+        {
+            myGun.StartCoroutine("Shoot" + whichone);
+		    _audio.Play();
+        }
 	}
 }

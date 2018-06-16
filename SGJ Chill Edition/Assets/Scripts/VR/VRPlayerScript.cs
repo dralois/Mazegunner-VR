@@ -21,6 +21,7 @@ public class VRPlayerScript : MonoBehaviour
             UnityEngine.XR.InputTracking.disablePositionalTracking = false;
             gameObject.GetComponentInChildren<Light>().enabled = true;
             transform.SetPositionAndRotation(godPosition.position, godPosition.rotation);
+            currTurret.GetComponent<Turret>().GunActive(false);
         }
         // Vorheriges Turret zurücksetzen
         if (currTurret != null)
@@ -62,7 +63,8 @@ public class VRPlayerScript : MonoBehaviour
             }
             else if(currTurret != null)
             {
-                currTurret.GetComponent<Turret>().ShootGun(false);
+                if(currTurret.GetComponent<Turret>().isShooting)
+                    currTurret.GetComponent<Turret>().ShootGun(false);
             }
             // Turret pos/rot updaten
             currTurret.transform.rotation = gameObject.GetComponentInChildren<Camera>().transform.rotation;
