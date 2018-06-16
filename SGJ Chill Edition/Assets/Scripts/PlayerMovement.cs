@@ -8,7 +8,8 @@ using UnityEngine.Networking;
 public class PlayerMovement : NetworkBehaviour
 {
     public GameObject model;
-    public int playerNumber = 1;
+    private int playerNumber = 1;
+    public float modelMaxRotationSpeed = 30;
 
     [Header("Movement Settings")]
     public Vector3 movementSpeed = new Vector3(5, 5, 5);
@@ -33,17 +34,16 @@ public class PlayerMovement : NetworkBehaviour
     public bool invertRotationZ = false;
 
     [Header("Misc Settings")]
-    public bool borderCheck;
-    public Vector3 border1;
-    public Vector3 border2;
+    private bool borderCheck;
+    private Vector3 border1;
+    private Vector3 border2;
 
     CharacterController controller;
-    Animator animator;
+    public Animator animator;
     // Use this for initialization
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -56,7 +56,6 @@ public class PlayerMovement : NetworkBehaviour
 
         PlayerControl();
         PassiveMovement();
-        print(animator.GetBool("walking"));
     }
 
     private void PassiveMovement()
@@ -70,34 +69,44 @@ public class PlayerMovement : NetworkBehaviour
     private void PlayerControl()
     {
         //Movement
+        Vector2 moveDir2 = new Vector2(Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
+            Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1));
+
         Vector3 movedir = new Vector3(
-        Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
+        moveDir2.x,
         0,
-        Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1));
+        moveDir2.y);
 
         if (Mathf.Abs(movedir.magnitude) > 0)
         {
             animator.SetBool("running", true);
-
-            animator.SetBool("running backwards", movedir.z < 0);
-
         }
         else
         {
-            animator.SetBool("running backwards", false);
             animator.SetBool("running", false);
         }
 
         Move(transform.TransformDirection(movedir));
-        //model.transform.Rotate(new Vector3(0, Vector2.Angle(Vector2.zero, new Vector2(Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
-        //    Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1))), 0));
+
+        float ang = Vector2.Angle(Vector2.up, moveDir2.normalized);
+        Vector3 cross = Vector3.Cross(Vector2.up, moveDir2.normalized);
+
+        if (cross.z > 0)
+            ang = 360 - ang;
+
+        if (moveDir2.magnitude == 0)
+        {
+            ang = 0;
+        }
+
+        model.transform.localRotation = Quaternion.RotateTowards(model.transform.localRotation,Quaternion.Euler(new Vector3(0, ang, 0)),modelMaxRotationSpeed * Time.deltaTime);
 
         //Rotation
         gameObject.transform.Rotate(new Vector3(
         Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1),
         Util.GetInputAxisSafe(yRotationInputString) * rotationSpeed.y * (invertRotationY ? -1 : 1),
         Util.GetInputAxisSafe(zRotationInputString) * rotationSpeed.z * (invertRotationZ ? -1 : 1)));
-
+        print(isLocalPlayer);
         //Jumping
 
     }
