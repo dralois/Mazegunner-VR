@@ -1036,6 +1036,7 @@ GameObject:
   - component: {fileID: 114858385440492824}
   - component: {fileID: 95340155508152732}
   - component: {fileID: 114396149539127634}
+  - component: {fileID: 54801552291562972}
   m_Layer: 0
   m_Name: PC_Player
   m_TagString: Untagged
@@ -1515,7 +1516,7 @@ Transform:
   m_GameObject: {fileID: 1975941909397822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.7965336, y: 2.9015388, z: -1.0326753}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4141846777350798}
   - {fileID: 4901202114282372}
@@ -1962,7 +1963,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532794731191408}
   m_LocalRotation: {x: -0.12561437, y: 0.07492274, z: -0.0095143225, w: -0.9892003}
-  m_LocalPosition: {x: 0.2815637, y: 2.7530296, z: -2.4956498}
+  m_LocalPosition: {x: 0.27, y: 1.78, z: -0.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4431318739104504}
@@ -2059,6 +2060,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!54 &54801552291562972
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1975941909397822}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!81 &81694848569888358
 AudioListener:
   m_ObjectHideFlags: 1
@@ -2144,6 +2160,8 @@ MonoBehaviour:
   invertRotationY: 0
   invertRotationZ: 0
   animator: {fileID: 95340155508152732}
+  jumpSpeed: 8
+  gravity: 9.8
 --- !u!114 &114702961706891582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2333,9 +2351,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.008
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.62, z: 0}
+  m_Center: {x: 0, y: 0.82, z: 0}
