@@ -11,6 +11,8 @@ public class ExtendedNetworkManager : NetworkManager {
     private bool inVR = true;
 #endif
 
+    private short currentID = 0;
+
     public class NetworkMessage : MessageBase {
         public bool isVR;
     }
@@ -34,7 +36,8 @@ public class ExtendedNetworkManager : NetworkManager {
             isVR = inVR
         };
 
-        ClientScene.AddPlayer(conn, 0, playerType);
+        ClientScene.AddPlayer(conn, currentID, playerType);
+        currentID++;
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn) {
@@ -45,9 +48,9 @@ public class ExtendedNetworkManager : NetworkManager {
         inVR = true;
     }
 
-//#if (UNITY_ANDROID)
+#if (UNITY_ANDROID)
     void Start() {
         StartHost();
     }
-//#endif
+#endif
 }
