@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 81678544416244844}
   - component: {fileID: 114362637232050298}
   - component: {fileID: 114030212926100582}
-  - component: {fileID: 143407817574188042}
-  - component: {fileID: 114384921663151032}
   - component: {fileID: 114137118343276390}
   m_Layer: 0
   m_Name: VR_Player
@@ -228,34 +226,6 @@ MonoBehaviour:
     i15: 91
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114384921663151032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1980115303025420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687366aa7ac60db48bba93e19290e368, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  modelMaxRotationSpeed: 30
-  movementSpeed: {x: 5, y: 5, z: 5}
-  xMovementInputString: Horizontal
-  yMovementInputString: 
-  zMovementInputString: Vertical
-  invertMovementX: 0
-  invertMovementY: 1
-  invertMovementZ: 0
-  rotationSpeed: {x: 5, y: 5, z: 5}
-  xRotationInputString: 
-  yRotationInputString: Mouse X
-  zRotationInputString: 
-  inverRotationX: 0
-  invertRotationY: 0
-  invertRotationZ: 0
-  animator: {fileID: 0}
 --- !u!124 &124029518742575912
 Behaviour:
   m_ObjectHideFlags: 1
@@ -274,21 +244,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &143407817574188042
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1980115303025420}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
