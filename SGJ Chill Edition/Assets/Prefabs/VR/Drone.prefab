@@ -719,6 +719,8 @@ GameObject:
   - component: {fileID: 114000278685663312}
   - component: {fileID: 65718988603048180}
   - component: {fileID: 120623417593243084}
+  - component: {fileID: 114581120007227086}
+  - component: {fileID: 114954952036571608}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Untagged
@@ -1380,7 +1382,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504062470934988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
+  m_LocalPosition: {x: 1.911, y: 0.6, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4527901653273672}
@@ -3422,6 +3424,38 @@ MonoBehaviour:
   myGun: {fileID: 0}
   shouldFire: 0
   railgun_activate: {fileID: 8300000, guid: c40c223bf107ab34094e971e05ee029e, type: 3}
+--- !u!114 &114581120007227086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504062470934988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 211
+    i2: 37
+    i3: 161
+    i4: 77
+    i5: 242
+    i6: 232
+    i7: 68
+    i8: 41
+    i9: 186
+    i10: 9
+    i11: 29
+    i12: 179
+    i13: 15
+    i14: 168
+    i15: 100
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114662556491382902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3441,8 +3475,28 @@ MonoBehaviour:
   smallAnchorRight: {fileID: 4030996325864296}
   bigAnchorLeft: {fileID: 4947586929562588}
   bigAnchorRight: {fileID: 4061543834804226}
-  isShooting: 0
   LaserDuration: 0.2
+--- !u!114 &114954952036571608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504062470934988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114957694481806934
 MonoBehaviour:
   m_ObjectHideFlags: 1
