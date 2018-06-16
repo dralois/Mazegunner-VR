@@ -33,14 +33,9 @@ public class Railgun : MonoBehaviour {
 	void Start () {
 		animator = GetComponent<Animator>();
 		audio = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+	}	
 
 	public void FireLaser () {
-		//Debug.Log("Imma firin' mah lazor");
 		audio.Play();
 	}
 }

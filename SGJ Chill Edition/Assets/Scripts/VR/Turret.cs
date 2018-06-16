@@ -3,36 +3,29 @@ using UnityEngine.EventSystems;
 
 public class Turret : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
+    private MeshRenderer selector;
+    public Transform playerPos;
+    private Color oldCol;
+
     public void Select(bool pi_fSelect)
     {
         if (pi_fSelect)
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+            oldCol = selector.materials[1].color;
+            selector.materials[1].color = Color.yellow;
         }
         else
         {
-            gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            selector.materials[1].color = oldCol;
         }
-    }    
-
-    public void TurretSelect(bool pi_fSelect)
-    {
-        gameObject.SetActive(!pi_fSelect);
-        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         VRPlayerScript player = FindObjectOfType<VRPlayerScript>();
-        if(player != null)
-        {
-            if(player.currTurret != null)
-                player.currTurret.SetActive(true);
-            // Teleport to turret
-            player.currTurret = gameObject;
-            player.TeleportHere(transform);
-            gameObject.SetActive(false);
-        }
+        player.TurretMode(gameObject);
+        gameObject.GetComponentInChildren<Railgun>().isActive = true;
     }
 
 }
