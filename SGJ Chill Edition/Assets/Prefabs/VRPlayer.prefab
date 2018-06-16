@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 223923333249209754}
   - component: {fileID: 114981398707969556}
   - component: {fileID: 114161856035885450}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: VRUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596252646169726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalPosition: {x: -0.0922, y: 0.3, z: 1.095}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4402252947129054}
@@ -504,7 +504,7 @@ MonoBehaviour:
   raycastMode: 2
   overridePointerCamera: {fileID: 0}
   drawDebugRays: 0
-  maxPointerDistance: 2000
+  maxPointerDistance: 200
   defaultReticleDistance: 20
   overrideCameraRayIntersectionDistance: 0
 --- !u!114 &114600988145343188
@@ -737,7 +737,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1494079850507828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 200}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 4402252947129054}
@@ -745,6 +745,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -200, y: -100}
-  m_SizeDelta: {x: 400, y: 200}
+  m_AnchoredPosition: {x: -2, y: -1}
+  m_SizeDelta: {x: 4, y: 2}
   m_Pivot: {x: 0, y: 0}
