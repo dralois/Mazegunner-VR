@@ -8,7 +8,7 @@ public class SpawnArea : MonoBehaviour {
 	private List<Vector3> playerPositions = new List<Vector3>(); 
 	public Vector3 dimensions = new Vector3(2, 2, 2);
 	public int maxPlayers = 10;
-	public int playerRadiusMin = 1;
+	public float playerRadiusMin = 1;
 
 	public Vector3 getPlayerSpawn(){
 		if(numPlayersJoined == maxPlayers){
@@ -46,16 +46,16 @@ public class SpawnArea : MonoBehaviour {
 	}
 
 	private void generatePlayerSpawns(){
-		int gridUnitsX = (int)(dimensions.x) / playerRadiusMin;
-		int gridUnitsZ = (int)(dimensions.z) / playerRadiusMin;
-		int maxPlayerSpawns = gridUnitsX * gridUnitsZ;
+		float gridUnitsX = dimensions.x / playerRadiusMin;
+		float gridUnitsZ = dimensions.z / playerRadiusMin;
+		int maxPlayerSpawns = (int) gridUnitsX * (int) gridUnitsZ;
 		if(maxPlayerSpawns < maxPlayers){
 			Debug.LogWarning("The SpawnArea does not provide enough space for " + maxPlayers + " players. Calculated max players: " + maxPlayerSpawns);
 		}
 		playerPositions.Clear();
 		for(int i = 0; i < maxPlayers; i++){
-			int row = i % gridUnitsX,
-				column = i / gridUnitsZ;
+			int row = i % (int) gridUnitsX,
+				column = i / (int) gridUnitsZ;
 			float x = transform.position.x - dimensions.x / 2,
 				z = transform.position.z - dimensions.z / 2;
 			x += (dimensions.x / gridUnitsX) * (row + 0.5f);
