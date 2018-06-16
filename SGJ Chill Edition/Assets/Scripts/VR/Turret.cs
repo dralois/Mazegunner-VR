@@ -26,7 +26,8 @@ public class Turret : MonoBehaviour, IPointerClickHandler
     private Transform bigAnchorRight;
     private bool rightShooting;
     private bool leftShooting;
-    public bool isShooting;
+    public bool isShooting { get; private set; }
+
     [SerializeField]
     private float LaserDuration = 0.25f;
 
