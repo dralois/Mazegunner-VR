@@ -44,6 +44,8 @@ public class PlayerMovement : NetworkBehaviour
     public float jumpSpeed = 8;
     public float gravity = 9.8f;
     private float vSpeed = 0;
+    public GameObject camera;
+    private float cameraAngle=0;
     // Use this for initialization
     void Start()
     {
@@ -82,7 +84,8 @@ public class PlayerMovement : NetworkBehaviour
         moveDir2.y);
 
         animator.SetBool("running", Mathf.Abs(movedir.magnitude) > 0);
-        animator.SetFloat("running direction", moveDir2.y);
+        animator.SetBool("backward", movedir.magnitude < 0);
+        animator.SetFloat("running direction", moveDir2.normalized.x);
 
 
         Vector3 vel = transform.TransformDirection(movedir);
@@ -104,12 +107,16 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(vel * Time.deltaTime);
 
         //Rotation
-   
-
         gameObject.transform.Rotate(new Vector3(
-        Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1),
+        0,
         Util.GetInputAxisSafe(yRotationInputString) * rotationSpeed.y * (invertRotationY ? -1 : 1),
         Util.GetInputAxisSafe(zRotationInputString) * rotationSpeed.z * (invertRotationZ ? -1 : 1)));
+
+        cameraAngle = (Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1)) + cameraAngle;
+
+        cameraAngle = Mathf.Clamp(cameraAngle, -80, 80);
+
+        camera.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
     }
 
     private void Move(Vector3 direction)
