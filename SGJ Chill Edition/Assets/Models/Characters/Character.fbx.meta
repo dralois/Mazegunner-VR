@@ -46,6 +46,7 @@ ModelImporter:
     100080: mixamorig:Spine1
     100082: mixamorig:Spine2
     100084: //RootNode
+    100086: Group56668
     400000: Group17854
     400002: mixamorig:Head
     400004: mixamorig:HeadTop_End
@@ -89,13 +90,22 @@ ModelImporter:
     400080: mixamorig:Spine1
     400082: mixamorig:Spine2
     400084: //RootNode
+    400086: Group56668
     2100000: No Name
+    2100002: defaultMat
     4300000: Group17854
+    4300002: Group56668
     7400000: mixamo.com
     9500000: //RootNode
     13700000: Group17854
+    13700002: Group56668
     2186277476908879412: ImportLogs
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: defaultMat
+    second: {fileID: 2100000, guid: 7879e8e32c6a02c4aafd1b7c6b682c19, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
