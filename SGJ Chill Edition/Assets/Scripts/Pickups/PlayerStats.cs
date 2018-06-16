@@ -43,6 +43,10 @@ public class PlayerStats : NetworkBehaviour {
         Debug.Log("Speed");
     }
 
+    public void SpeedBuff(float amount, float time) {
+
+    }
+
     public void Invisibility(float time) {
         invisibilityTimer = time;
         GetComponentInChildren<Renderer>().enabled = false;

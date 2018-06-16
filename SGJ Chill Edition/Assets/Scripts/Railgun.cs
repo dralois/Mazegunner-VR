@@ -16,7 +16,7 @@ public class Railgun : MonoBehaviour {
 		get {return _active;}
 		set {
 			if(value && !_active &&  railgun_activate != null){
-				audio.PlayOneShot(railgun_activate);
+				_audio.PlayOneShot(railgun_activate);
 			}
 			animator.SetBool("activated", value);
 			_active = value;
@@ -25,17 +25,17 @@ public class Railgun : MonoBehaviour {
 
 	public AudioClip railgun_activate;
 	Animator animator;
-	AudioSource audio;
+	AudioSource _audio;
 
 	private bool _shooting = false;
 	private bool _active = false;
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
-		audio = GetComponent<AudioSource>();
+		_audio = GetComponent<AudioSource>();
 	}	
 
 	public void FireLaser () {
-		audio.Play();
+		_audio.Play();
 	}
 }

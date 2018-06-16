@@ -12,6 +12,6 @@ public class LocalPlayerCheck : NetworkBehaviour
         print(isServer);
         print(isClient);
 
-        gameObject.active = isLocalPlayer ;
+        gameObject.SetActive(isLocalPlayer);
     }
 }
