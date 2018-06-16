@@ -8,7 +8,7 @@ public class ExtendedNetworkManager : NetworkManager {
 #if (UNITY_ANDROID)
     private bool inVR = true;
 #else
-    private bool inVR = true;
+    private bool inVR = false;
 #endif
 
     private short currentID = 0;
