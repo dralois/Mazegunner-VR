@@ -21,14 +21,17 @@ public class VRPlayerScript : MonoBehaviour
             }
             // Danach Tracking aus und Position wechseln
             UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+            gameObject.GetComponentInChildren<Light>().enabled = false;
             transform.SetPositionAndRotation(turret.GetComponent<Turret>().playerPos.position,
                                             turret.GetComponent<Turret>().playerPos.rotation);
         }
         else
         {
             UnityEngine.XR.InputTracking.disablePositionalTracking = false;
+            gameObject.GetComponentInChildren<Light>().enabled = true;
             transform.SetPositionAndRotation(godPosition.position, godPosition.rotation);
-            currTurret.GetComponentInChildren<Railgun>().isActive = false;
+            currTurret.transform.SetPositionAndRotation(currTurret.transform.position, Quaternion.identity);
+            currTurret.GetComponent<Turret>().GunActive(false);
         }
         // Speichern
         currTurret = turret;
@@ -47,16 +50,15 @@ public class VRPlayerScript : MonoBehaviour
             // Aktiviere schießen
             if(GvrControllerInput.ClickButton || Input.GetMouseButton(0))
             {
-                currTurret.GetComponentInChildren<Railgun>().isShooting = true;
+                currTurret.GetComponent<Turret>().ShootGun(true);
             }
             else if(currTurret != null)
             {
-                currTurret.GetComponentInChildren<Railgun>().isShooting = false;
+                currTurret.GetComponent<Turret>().ShootGun(false);
             }
             // Turret pos/rot updaten
             currTurret.transform.rotation = gameObject.GetComponentInChildren<Camera>().transform.rotation;
-            gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;
-            //currTurret.transform.position = gameObject.GetComponentInChildren<Camera>().transform.position;
+            gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
     }
 }
