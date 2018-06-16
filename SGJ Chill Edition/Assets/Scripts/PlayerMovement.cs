@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector3 direction)
     {
-            print(controller.Move(direction * Time.deltaTime));
+            controller.Move(direction * Time.deltaTime);
     }
 
 
