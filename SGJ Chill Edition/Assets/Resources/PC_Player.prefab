@@ -1436,6 +1436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable:
   - {fileID: 20292749383154598}
+  componentsToEnable: []
 --- !u!114 &114396149539127634
 MonoBehaviour:
   m_ObjectHideFlags: 1
