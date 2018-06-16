@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Network_Testing.unity
     guid: f5bac44d54874334bb0cedca35d5024f
+  - enabled: 0
+    path: Assets/Scenes/Network_Testing_VR.unity
+    guid: da871049b98e4e44c88c4ef87c4e1052
   m_configObjects: {}
