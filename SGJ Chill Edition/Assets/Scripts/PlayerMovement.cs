@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    public GameObject model;
     public int playerNumber = 1;
 
     [Header("Movement Settings")]
@@ -88,6 +89,8 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         Move(transform.TransformDirection(movedir));
+        //model.transform.Rotate(new Vector3(0, Vector2.Angle(Vector2.zero, new Vector2(Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
+        //    Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1))), 0));
 
         //Rotation
         gameObject.transform.Rotate(new Vector3(
