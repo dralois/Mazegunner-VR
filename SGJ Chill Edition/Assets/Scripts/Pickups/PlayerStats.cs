@@ -16,14 +16,14 @@ public class PlayerStats : NetworkBehaviour {
 	}
 
     public void SpeedBoost(float amount, float time) {
-
+        Debug.Log("Speed");
     }
 
     public void Invisibility(float time) {
-
+        Debug.Log("Invisibility");
     }
 
     public void Shield(float time) {
-
+        Debug.Log("Shield");
     }
 }
