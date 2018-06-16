@@ -448,7 +448,7 @@ ModelImporter:
         messageOptions: 0
       - time: 0.2657228
         functionName: FireLaser
-        data: left
+        data: right
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
