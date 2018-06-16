@@ -7,8 +7,8 @@ public class PlayerSetup : NetworkBehaviour
 {
 
     //[SerializeField]
-    public Behaviour[] componentsToDisable;
-    public Behaviour[] componentsToEnable;
+    public Behaviour camera;
+    public Renderer meshRender;
 
     void Start()
     {
@@ -16,24 +16,13 @@ public class PlayerSetup : NetworkBehaviour
         // active on the player that we control
         if (!isLocalPlayer)
         {
-            DisableComponents();
-            EnableComponents();
+            camera.enabled = false;
+            meshRender.enabled = true;
         }
-    }
-
-    void DisableComponents()
-    {
-        for (int i = 0; i < componentsToDisable.Length; i++)
+        else
         {
-            componentsToDisable[i].enabled = false;
+            camera.enabled = true;
+            meshRender.enabled = false;
         }
-    }
-    void EnableComponents()
-    {
-        for (int i = 0; i < componentsToEnable.Length; i++)
-        {
-            componentsToEnable[i].enabled = true;
-        }
-
     }
 }
