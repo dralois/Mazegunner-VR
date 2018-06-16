@@ -18,11 +18,12 @@ public class Turret : MonoBehaviour, IPointerClickHandler
     public void TurretSelect(bool pi_fSelect)
     {
         gameObject.SetActive(!pi_fSelect);
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PlayerScript player = FindObjectOfType<PlayerScript>();
+        VRPlayerScript player = FindObjectOfType<VRPlayerScript>();
         if(player != null)
         {
             if(player.currTurret != null)
