@@ -13,6 +13,8 @@ public class ExtendedNetworkManager : NetworkManager {
     public GameObject VRPlayerSpawn;
     public SpawnArea PCPlayerSpawns;
 
+    private short currentID = 0;
+
     public class NetworkMessage : MessageBase {
         public bool isVR;
         
@@ -38,7 +40,8 @@ public class ExtendedNetworkManager : NetworkManager {
             isVR = inVR
         };
 
-        ClientScene.AddPlayer(conn, 0, playerType);
+        ClientScene.AddPlayer(conn, currentID, playerType);
+        currentID++;
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn) {
