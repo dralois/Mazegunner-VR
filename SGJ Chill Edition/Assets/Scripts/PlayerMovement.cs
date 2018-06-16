@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-public class PlayerMovement : NetworkBehaviour
-{
+public class PlayerMovement : NetworkBehaviour {
     public int playerNumber = 1;
 
     [Header("Movement Settings")]
@@ -38,44 +37,41 @@ public class PlayerMovement : NetworkBehaviour
 
     CharacterController controller;
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        if (!isLocalPlayer) {
+            return;
+        }
+
         PlayerControl();
         PassiveMovement();
     }
 
-    private void PassiveMovement()
-    {
-
-
+    private void PassiveMovement() {
         //BorderChecks
         if (borderCheck)
             transform.position = Util.SetInBetween(transform.position, border1, border2);
     }
 
-    private void PlayerControl()
-    {
-        Move(transform.TransformDirection(new Vector3(
+    private void PlayerControl() {
+       Move(transform.TransformDirection(new Vector3(
        Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
        Util.GetInputAxisSafe(yMovementInputString) * movementSpeed.y * (invertMovementY ? -1 : 1),
        Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1))));
 
-        gameObject.transform.Rotate(new Vector3(
+       gameObject.transform.Rotate(new Vector3(
        Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1),
        Util.GetInputAxisSafe(yRotationInputString) * rotationSpeed.y * (invertRotationY ? -1 : 1),
        Util.GetInputAxisSafe(zRotationInputString) * rotationSpeed.z * (invertRotationZ ? -1 : 1)));
 
     }
 
-    private void Move(Vector3 direction)
-    {
-            print(controller.Move(direction * Time.deltaTime));
+    private void Move(Vector3 direction) {
+        print(controller.Move(direction * Time.deltaTime));
     }
 
 
