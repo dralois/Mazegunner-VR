@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687366aa7ac60db48bba93e19290e368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 0}
   playerNumber: 1
   movementSpeed: {x: 5, y: 5, z: 5}
   xMovementInputString: Horizontal
