@@ -73,7 +73,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4571456916264344}
   - component: {fileID: 33205183544815132}
-  - component: {fileID: 136302751838483666}
   - component: {fileID: 23860031826892266}
   - component: {fileID: 114253488859134464}
   - component: {fileID: 114666424971110800}
@@ -201,8 +200,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510590385199596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2728605, y: 6.4, z: -0.8729873}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4771742437444988}
   - {fileID: 4167394368879130}
@@ -557,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
+  m_SendInterval: 0.0625
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
@@ -579,9 +578,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNumber: 1
   movementSpeed: {x: 5, y: 5, z: 5}
-  xMovementInputString: Vertical
+  xMovementInputString: Horizontal
   yMovementInputString: 
-  zMovementInputString: Horizontal
+  zMovementInputString: Vertical
   invertMovementX: 0
   invertMovementY: 1
   invertMovementZ: 0
@@ -601,19 +600,6 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1648478544322026}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136302751838483666
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1510590385199596}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -655,7 +641,7 @@ CharacterController:
   m_GameObject: {fileID: 1510590385199596}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Height: 1.9999999
   m_Radius: 0.49999997
