@@ -43,7 +43,9 @@ public class PlayerMovement : NetworkBehaviour
 
     public float jumpSpeed = 8;
     public float gravity = 9.8f;
-    private float vSpeed = 0; 
+    private float vSpeed = 0;
+    public GameObject camera;
+    private float cameraAngle=0;
     // Use this for initialization
     void Start()
     {
@@ -83,14 +85,10 @@ public class PlayerMovement : NetworkBehaviour
         0,
         moveDir2.y);
 
-        if (Mathf.Abs(movedir.magnitude) > 0)
-        {
-            animator.SetBool("running", true);
-        }
-        else
-        {
-            animator.SetBool("running", false);
-        }
+        animator.SetBool("running", Mathf.Abs(movedir.magnitude) > 0);
+        animator.SetBool("backward", movedir.magnitude < 0);
+        animator.SetFloat("running direction", moveDir2.normalized.x);
+
 
         Vector3 vel = transform.TransformDirection(movedir);
 
@@ -111,23 +109,16 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(vel * Time.deltaTime);
 
         //Rotation
-        float ang = Vector2.Angle(Vector2.up, moveDir2.normalized);
-        Vector3 cross = Vector3.Cross(Vector2.up, moveDir2.normalized);
-
-        if (cross.z > 0)
-            ang = 360 - ang;
-
-        if (moveDir2.magnitude == 0)
-        {
-            ang = 0;
-        }
-
-        model.transform.localRotation = Quaternion.RotateTowards(model.transform.localRotation, Quaternion.Euler(new Vector3(0, ang, 0)), modelMaxRotationSpeed * Time.deltaTime);
-
         gameObject.transform.Rotate(new Vector3(
-        Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1),
+        0,
         Util.GetInputAxisSafe(yRotationInputString) * rotationSpeed.y * (invertRotationY ? -1 : 1),
         Util.GetInputAxisSafe(zRotationInputString) * rotationSpeed.z * (invertRotationZ ? -1 : 1)));
+
+        cameraAngle = (Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1)) + cameraAngle;
+
+        cameraAngle = Mathf.Clamp(cameraAngle, -80, 80);
+
+        camera.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
     }
 
     private void Move(Vector3 direction)

@@ -8,6 +8,7 @@ public class PlayerSetup : NetworkBehaviour
 
     //[SerializeField]
     public Behaviour[] componentsToDisable;
+    public Behaviour[] componentsToEnable;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerSetup : NetworkBehaviour
         if (!isLocalPlayer)
         {
             DisableComponents();
+            EnableComponents();
         }
     }
 
@@ -25,5 +27,13 @@ public class PlayerSetup : NetworkBehaviour
         {
             componentsToDisable[i].enabled = false;
         }
+    }
+    void EnableComponents()
+    {
+        for (int i = 0; i < componentsToEnable.Length; i++)
+        {
+            componentsToEnable[i].enabled = true;
+        }
+
     }
 }

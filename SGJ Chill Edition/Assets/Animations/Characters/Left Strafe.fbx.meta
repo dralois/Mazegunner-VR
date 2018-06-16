@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 619e68f38af75d24a9a7f1f62bdd0976
+guid: 6b7765744fc8c164287cbd876d94539c
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -87,7 +87,7 @@ ModelImporter:
     400078: mixamorig:Spine1
     400080: mixamorig:Spine2
     400082: //RootNode
-    7400000: Idle
+    7400000: Left Strafe
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -118,10 +118,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Left Strafe
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 240
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
