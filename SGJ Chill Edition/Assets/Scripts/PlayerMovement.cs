@@ -44,8 +44,9 @@ public class PlayerMovement : NetworkBehaviour
     public float jumpSpeed = 8;
     public float gravity = 9.8f;
     private float vSpeed = 0;
-    public GameObject camera;
+    public GameObject cam;
     private float cameraAngle=0;
+
     // Use this for initialization
     void Start()
     {
@@ -118,7 +119,7 @@ public class PlayerMovement : NetworkBehaviour
 
         cameraAngle = Mathf.Clamp(cameraAngle, -80, 80);
 
-        camera.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
+        cam.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
     }
 
     private void Move(Vector3 direction)
