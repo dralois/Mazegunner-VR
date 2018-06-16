@@ -998,10 +998,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4141846777350798}
-  - component: {fileID: 95228193141097420}
-  - component: {fileID: 114943499657460102}
-  - component: {fileID: 114479338192340448}
-  - component: {fileID: 114810725292215220}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -1037,6 +1033,9 @@ GameObject:
   - component: {fileID: 143880746807333792}
   - component: {fileID: 114747031422741410}
   - component: {fileID: 114328017224579476}
+  - component: {fileID: 114858385440492824}
+  - component: {fileID: 95340155508152732}
+  - component: {fileID: 114396149539127634}
   m_Layer: 0
   m_Name: PC_Player
   m_TagString: Untagged
@@ -2067,13 +2066,13 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532794731191408}
   m_Enabled: 1
---- !u!95 &95228193141097420
+--- !u!95 &95340155508152732
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963294682547816}
+  m_GameObject: {fileID: 1975941909397822}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c24a13b83bc138c4c92d68e7c77957eb, type: 3}
   m_Controller: {fileID: 9100000, guid: b776bb0903cd50549a0d0ca5d4ded374, type: 2}
@@ -2098,27 +2097,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable:
   - {fileID: 20292749383154598}
---- !u!114 &114479338192340448
+--- !u!114 &114396149539127634
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963294682547816}
+  m_GameObject: {fileID: 1975941909397822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_Animator: {fileID: 95340155508152732}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &114667744239103240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2146,7 +2143,7 @@ MonoBehaviour:
   inverRotationX: 0
   invertRotationY: 0
   invertRotationZ: 0
-  animator: {fileID: 95228193141097420}
+  animator: {fileID: 95340155508152732}
 --- !u!114 &114702961706891582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2200,57 +2197,25 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
---- !u!114 &114810725292215220
+--- !u!114 &114858385440492824
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963294682547816}
+  m_GameObject: {fileID: 1975941909397822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 95228193141097420}
-  m_ParameterSendBits: 0
-  param0: 
-  param1: 
-  param2: 
-  param3: 
-  param4: 
-  param5: 
---- !u!114 &114943499657460102
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1963294682547816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 129
-    i1: 63
-    i2: 153
-    i3: 158
-    i4: 115
-    i5: 226
-    i6: 153
-    i7: 4
-    i8: 154
-    i9: 49
-    i10: 42
-    i11: 32
-    i12: 179
-    i13: 184
-    i14: 233
-    i15: 202
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_Target: {fileID: 4141846777350798}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!124 &124137105836913838
 Behaviour:
   m_ObjectHideFlags: 1

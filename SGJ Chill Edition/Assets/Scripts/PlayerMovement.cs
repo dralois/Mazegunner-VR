@@ -106,7 +106,6 @@ public class PlayerMovement : NetworkBehaviour
         Util.GetInputAxisSafe(xRotationInputString) * rotationSpeed.x * (inverRotationX ? -1 : 1),
         Util.GetInputAxisSafe(yRotationInputString) * rotationSpeed.y * (invertRotationY ? -1 : 1),
         Util.GetInputAxisSafe(zRotationInputString) * rotationSpeed.z * (invertRotationZ ? -1 : 1)));
-        print(isLocalPlayer);
         //Jumping
 
     }
