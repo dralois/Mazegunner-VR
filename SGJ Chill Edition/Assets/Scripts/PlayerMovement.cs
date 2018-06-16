@@ -54,6 +54,8 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject cam;
     private float cameraAngle=0;
 
+    public float slowdownAmount;
+    public float buffAmount;
 
     // Use this for initialization
     void Start()
@@ -86,8 +88,8 @@ public class PlayerMovement : NetworkBehaviour
     private void PlayerControl()
     {
         //Movement
-        Vector2 moveDir2 = new Vector2(Util.GetInputAxisSafe(xMovementInputString) * movementSpeed.x * (invertMovementX ? -1 : 1),
-            Util.GetInputAxisSafe(zMovementInputString) * movementSpeed.z * (invertMovementZ ? -1 : 1));
+        Vector2 moveDir2 = new Vector2(Util.GetInputAxisSafe(xMovementInputString) * (movementSpeed.x - slowdownAmount + buffAmount) * (invertMovementX ? -1 : 1),
+            Util.GetInputAxisSafe(zMovementInputString) * (movementSpeed.z - slowdownAmount + buffAmount) * (invertMovementZ ? -1 : 1));
 
         Vector3 movedir = new Vector3(
         moveDir2.x,
@@ -136,5 +138,25 @@ public class PlayerMovement : NetworkBehaviour
         controller.Move(direction * Time.deltaTime);
     }
 
+    public void Speedbuff(float amount, float time)
+    {
+        buffAmount = amount;
+        Invoke("EndBuff", time);
+    }
+    private void EndBuff()
+    {
+        buffAmount = 0;
+    }
+
+    public void SlowDown(float amount, float time)
+    {
+        slowdownAmount = amount;
+        Invoke("EndSlowDown", time);
+    }
+
+    private void EndSlowDown()
+    {
+        slowdownAmount = 0;
+    }
 
 }
