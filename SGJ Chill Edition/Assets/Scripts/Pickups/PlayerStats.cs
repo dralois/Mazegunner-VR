@@ -31,6 +31,10 @@ public class PlayerStats : NetworkBehaviour {
 
             if (invisibilityTimer < 0.0f) {
                 GetComponentInChildren<Renderer>().enabled = true;
+
+                if (shieldTimer > 0.0f) {
+                    shield.GetComponent<Renderer>().enabled = true;
+                }
             }
         }
     }
@@ -47,5 +51,8 @@ public class PlayerStats : NetworkBehaviour {
     public void Shield(float time) {
         shieldTimer = time;
         shield = Instantiate(shieldPrefab, transform);
+        if (invisibilityTimer > 0.0f) {
+            shield.GetComponent<Renderer>().enabled = false;
+        }
     }
 }
