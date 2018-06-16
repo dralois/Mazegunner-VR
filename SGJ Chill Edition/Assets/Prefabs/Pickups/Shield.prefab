@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4612693287614714}
   - component: {fileID: 33870758696273616}
   - component: {fileID: 23286938273648190}
+  - component: {fileID: 114680238611062530}
+  - component: {fileID: 114046418003514382}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -83,3 +85,56 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1212475506347556}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114046418003514382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212475506347556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114680238611062530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212475506347556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 145
+    i1: 135
+    i2: 254
+    i3: 122
+    i4: 34
+    i5: 100
+    i6: 241
+    i7: 52
+    i8: 40
+    i9: 162
+    i10: 248
+    i11: 241
+    i12: 232
+    i13: 139
+    i14: 55
+    i15: 226
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

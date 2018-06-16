@@ -18,9 +18,12 @@ public class PlayerStats : NetworkBehaviour {
     float score;
     float gameDuration;
 
+    private int originalLayer;
+
     // Use this for initialization
     void Start() {
         health = fullHealth;
+        originalLayer = gameObject.layer;
     }
 
     // Update is called once per frame
@@ -41,10 +44,10 @@ public class PlayerStats : NetworkBehaviour {
             invisibilityTimer -= Time.deltaTime;
 
             if (invisibilityTimer < 0.0f) {
-                GetComponentInChildren<Renderer>().enabled = true;
+                gameObject.layer = originalLayer;
 
                 if (shieldTimer > 0.0f) {
-                    shield.GetComponent<Renderer>().enabled = true;
+                    shield.layer = originalLayer;
                 }
             }
         }
@@ -60,14 +63,15 @@ public class PlayerStats : NetworkBehaviour {
 
     public void Invisibility(float time) {
         invisibilityTimer = time;
-        GetComponentInChildren<Renderer>().enabled = false;
+        gameObject.layer = 9; // Only PC layer
     }
 
     public void Shield(float time) {
         shieldTimer = time;
         shield = Instantiate(shieldPrefab, transform);
         if (invisibilityTimer > 0.0f) {
-            shield.GetComponent<Renderer>().enabled = false;
+            //shield.GetComponent<Renderer>().enabled = false;
+            shield.layer = 9; // Only PC layer
         }
     }
 
