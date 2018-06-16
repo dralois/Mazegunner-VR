@@ -20,10 +20,12 @@ public class PlayerStats : NetworkBehaviour {
 
     private int originalLayer;
 
+    private PlayerMovement movement;
     // Use this for initialization
     void Start() {
         health = fullHealth;
         originalLayer = gameObject.layer;
+        movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -54,11 +56,12 @@ public class PlayerStats : NetworkBehaviour {
     }
 
     public void SpeedBoost(float amount, float time) {
-        Debug.Log("SpeedBoost");
+        movement.Speedbuff(amount, time);
     }
 
+    //Slowdown
     public void SpeedBuff(float amount, float time) {
-        Debug.Log("SpeedBuff");
+        movement.SlowDown(amount, time);
     }
 
     public void Invisibility(float time) {
