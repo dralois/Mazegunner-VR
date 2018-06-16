@@ -44,4 +44,10 @@ public class ExtendedNetworkManager : NetworkManager {
     public void EngageVRMode() {
         inVR = true;
     }
+
+#if (UNITY_ANDROID)
+    void Start() {
+        StartHost();
+    }
+#endif
 }
