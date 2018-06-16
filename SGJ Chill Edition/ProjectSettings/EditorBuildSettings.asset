@@ -14,7 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Network_Testing_VR.unity
     guid: da871049b98e4e44c88c4ef87c4e1052
-  - enabled: 1
-    path: Assets/Scenes/Characker_Testing.unity
+  - enabled: 0
+    path: Assets/Scenes/Character_Testing.unity
     guid: d67a4ebd15747884ab09e79ee8a114fd
+  - enabled: 0
+    path: Assets/Scenes/TurretTest.unity
+    guid: 6c3369bcbb3b51c418e9895c219fd9a7
+  - enabled: 1
+    path: Assets/Scenes/Labyrinth.unity
+    guid: 2b0b5ce5e0e993e469f5c9e9abee9bd1
   m_configObjects: {}
