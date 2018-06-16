@@ -8,7 +8,7 @@ public class ExtendedNetworkManager : NetworkManager {
 #if (UNITY_ANDROID)
     private bool inVR = true;
 #else
-    private bool inVR = false;
+    private bool inVR = true;
 #endif
 
     public class NetworkMessage : MessageBase {
@@ -45,9 +45,9 @@ public class ExtendedNetworkManager : NetworkManager {
         inVR = true;
     }
 
-#if (UNITY_ANDROID)
+//#if (UNITY_ANDROID)
     void Start() {
         StartHost();
     }
-#endif
+//#endif
 }
