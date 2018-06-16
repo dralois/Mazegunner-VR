@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6007d638ebb65d34c8d8867bdb2fde15
+guid: f2eff71b812eaa74aa099e7fdd055664
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -135,7 +135,7 @@ ModelImporter:
     400126: mixamorig:Spine
     400128: mixamorig:Spine1
     400130: mixamorig:Spine2
-    7400000: Female Walk
+    7400000: Type to Sit
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -166,10 +166,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Female Walk
+      name: Type to Sit
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 69
+      lastFrame: 56
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
