@@ -44,8 +44,17 @@ public class PlayerMovement : NetworkBehaviour
     public float jumpSpeed = 8;
     public float gravity = 9.8f;
     private float vSpeed = 0;
-    public GameObject camera;
+
+    [Header("Sprint stats")]
+    public float speedBoost;
+    public float sprintDuration;
+    public float recoveryDebuff;
+    public float recoveryTime;
+
+    public GameObject cam;
     private float cameraAngle=0;
+
+
     // Use this for initialization
     void Start()
     {
@@ -86,7 +95,7 @@ public class PlayerMovement : NetworkBehaviour
         moveDir2.y);
 
         animator.SetBool("running", Mathf.Abs(movedir.magnitude) > 0);
-        animator.SetBool("backward", movedir.magnitude < 0);
+        animator.SetBool("backward", moveDir2.y < 0);
         animator.SetFloat("running direction", moveDir2.normalized.x);
 
 
@@ -118,7 +127,8 @@ public class PlayerMovement : NetworkBehaviour
 
         cameraAngle = Mathf.Clamp(cameraAngle, -80, 80);
 
-        camera.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
+        cam.transform.localRotation = Quaternion.Euler(new Vector3(cameraAngle, 0,0));
+
     }
 
     private void Move(Vector3 direction)

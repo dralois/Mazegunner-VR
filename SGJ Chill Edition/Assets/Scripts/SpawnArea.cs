@@ -52,7 +52,6 @@ public class SpawnArea : MonoBehaviour {
 		if(maxPlayerSpawns < maxPlayers){
 			Debug.LogWarning("The SpawnArea does not provide enough space for " + maxPlayers + " players. Calculated max players: " + maxPlayerSpawns);
 		}
-		int ratio = maxPlayerSpawns / maxPlayers;
 		playerPositions.Clear();
 		for(int i = 0; i < maxPlayers; i++){
 			int row = i % gridUnitsX,

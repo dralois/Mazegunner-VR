@@ -4,23 +4,26 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class Timer : MonoBehaviour {
+    public enum DisplayType { MINUTES_SECONDS, SECONDS};
 
     [Tooltip("Time in seconds")]
     public int initTime;
     public Text time;
     public UnityEvent onTimerZero;
+    public DisplayType type;
 
+    private string formatString;
     private float timeLeft;
 
     private void Start()
     {
         timeLeft = initTime;
+        formatString = time.text;
     }
 
     private void Update () {
         if (timeLeft < 0)
         {
-            time.text = "00m:00s";
             onTimerZero.Invoke();
             this.enabled = false;
             return;
@@ -28,6 +31,9 @@ public class Timer : MonoBehaviour {
         timeLeft -= Time.deltaTime;
         TimeSpan t = TimeSpan.FromSeconds(timeLeft);
 
-        time.text = string.Format("{0:D2}m:{1:D2}s",t.Minutes,t.Seconds);
+        if (type == DisplayType.MINUTES_SECONDS)
+            time.text = string.Format(formatString, t.Minutes, t.Seconds);
+        else
+            time.text = string.Format(formatString, t.TotalSeconds);
     }
 }
