@@ -10,7 +10,7 @@ public class LocalPlayerCheck : NetworkBehaviour
     {
         print(isLocalPlayer);
         print(isServer);
-        print(isClient);
+        print(isClient); 
 
         gameObject.SetActive(isLocalPlayer);
     }

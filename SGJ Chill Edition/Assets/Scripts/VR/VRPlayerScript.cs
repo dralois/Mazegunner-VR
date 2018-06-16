@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
+
+
 public class VRPlayerScript : MonoBehaviour
 {
+    private bool isInTrapPlacementMode = true;
+
     // Übersichtsposition
     [SerializeField]
     private Transform godPosition;
@@ -39,6 +43,8 @@ public class VRPlayerScript : MonoBehaviour
 
     private void Update()
     {
+        //TODO: handle isInTrapPlacementMode!!!!
+
         // Deaktiviere ggf. Turret
         if (GvrControllerInput.AppButton || Input.GetMouseButtonDown(1))
         {
@@ -61,4 +67,14 @@ public class VRPlayerScript : MonoBehaviour
             gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
     }
+
+    public void OnGameStarted(int pcPlayerLives, float timeInSeconds){
+        isInTrapPlacementMode = false;
+    }
+
+    public void OnGameFinished(PlayerStats[] pcPlayers){
+        // TODO: get Scores from all other players and display them.
+    }
+
+
 }
