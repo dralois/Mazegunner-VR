@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
+
+
 public class VRPlayerScript : MonoBehaviour
 {
+    private bool isInTrapPlacementMode = true;
+
     // Übersichtsposition
     [SerializeField]
     private Transform godPosition;
@@ -9,36 +13,40 @@ public class VRPlayerScript : MonoBehaviour
     // Aktuell aktives Turret
     private GameObject currTurret;
 
-    public void TurretMode(GameObject turret)
+    public void TurretMode(GameObject pi_Turret)
     {
-        // Turret aktivieren / deaktivieren
-        if(turret != null)
-        {
-            if(currTurret != null)
-            {
-                // Altes reaktivieren
-                currTurret.GetComponent<Turret>().Select(false);
-            }
-            // Danach Tracking aus und Position wechseln
-            UnityEngine.XR.InputTracking.disablePositionalTracking = true;
-            gameObject.GetComponentInChildren<Light>().enabled = false;
-            transform.SetPositionAndRotation(turret.GetComponent<Turret>().playerPos.position,
-                                            turret.GetComponent<Turret>().playerPos.rotation);
-        }
-        else
+        // Turret Mode verlassen
+        if (pi_Turret == null)
         {
             UnityEngine.XR.InputTracking.disablePositionalTracking = false;
             gameObject.GetComponentInChildren<Light>().enabled = true;
             transform.SetPositionAndRotation(godPosition.position, godPosition.rotation);
-            currTurret.transform.SetPositionAndRotation(currTurret.transform.position, Quaternion.identity);
+        }
+        // Vorheriges Turret zurücksetzen
+        if (currTurret != null)
+        {
+            // Altes reaktivieren
+            currTurret.GetComponent<Turret>().Select(false);
+            currTurret.transform.SetPositionAndRotation(currTurret.transform.position,
+                Quaternion.Euler(0, currTurret.transform.rotation.eulerAngles.y, 0));
             currTurret.GetComponent<Turret>().GunActive(false);
         }
-        // Speichern
-        currTurret = turret;
+        // In neues Turret wechseln
+        if(pi_Turret != null)
+        {
+            UnityEngine.XR.InputTracking.disablePositionalTracking = true;
+            gameObject.GetComponentInChildren<Light>().enabled = false;
+            transform.SetPositionAndRotation(pi_Turret.GetComponent<Turret>().playerPos.position,
+                                            pi_Turret.GetComponent<Turret>().playerPos.rotation);            
+        }
+        // Neues speichern
+        currTurret = pi_Turret;
     }
 
     private void Update()
     {
+        //TODO: handle isInTrapPlacementMode!!!!
+
         // Deaktiviere ggf. Turret
         if (GvrControllerInput.AppButton || Input.GetMouseButtonDown(1))
         {
@@ -61,4 +69,14 @@ public class VRPlayerScript : MonoBehaviour
             gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
     }
+
+    public void OnGameStarted(int pcPlayerLives, float timeInSeconds){
+        isInTrapPlacementMode = false;
+    }
+
+    public void OnGameFinished(PlayerStats[] pcPlayers){
+        // TODO: get Scores from all other players and display them.
+    }
+
+
 }

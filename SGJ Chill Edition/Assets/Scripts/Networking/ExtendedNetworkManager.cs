@@ -12,6 +12,7 @@ public class ExtendedNetworkManager : NetworkManager {
 #endif
     public GameObject VRPlayerSpawn;
     public SpawnArea PCPlayerSpawns;
+    public GameManager gameManager;
 
     private short currentID = 0;
 
