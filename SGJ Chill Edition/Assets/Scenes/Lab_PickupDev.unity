@@ -306,7 +306,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4205515073072652, guid: 2581adb67ce79f74da1b638c835dd086, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.7712126
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 2581adb67ce79f74da1b638c835dd086, type: 2}
       propertyPath: m_LocalPosition.y
@@ -314,7 +314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 2581adb67ce79f74da1b638c835dd086, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -3.9300835
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 2581adb67ce79f74da1b638c835dd086, type: 2}
       propertyPath: m_LocalRotation.x
@@ -781,6 +781,7 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   VRPlayerSpawn: {fileID: 644652003}
   PCPlayerSpawns: {fileID: 948961701}
+  gameManager: {fileID: 0}
 --- !u!4 &1281607088
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +804,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4205515073072652, guid: 763d7f958d911b0429edb20081ec9c3c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 3.6783628
+      value: 1.79
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 763d7f958d911b0429edb20081ec9c3c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -811,7 +812,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 763d7f958d911b0429edb20081ec9c3c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.9717093
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4205515073072652, guid: 763d7f958d911b0429edb20081ec9c3c, type: 2}
       propertyPath: m_LocalRotation.x
