@@ -992,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1171154041280452}
   modelMaxRotationSpeed: 360
-  movementSpeed: {x: 5, y: 5, z: 5}
+  movementSpeed: {x: 2, y: 2, z: 2}
   xMovementInputString: Horizontal
   yMovementInputString: 
   zMovementInputString: Vertical
@@ -1007,13 +1007,15 @@ MonoBehaviour:
   invertRotationY: 0
   invertRotationZ: 0
   animator: {fileID: 95340155508152732}
-  jumpSpeed: 8
+  jumpSpeed: 4
   gravity: 9.8
   speedBoost: 0
   sprintDuration: 0
   recoveryDebuff: 0
   recoveryTime: 0
   cam: {fileID: 1041630599134894}
+  slowdownAmount: 0
+  buffAmount: 0
 --- !u!114 &114702961706891582
 MonoBehaviour:
   m_ObjectHideFlags: 1
