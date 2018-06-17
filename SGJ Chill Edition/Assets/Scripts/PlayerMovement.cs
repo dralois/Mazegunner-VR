@@ -106,11 +106,16 @@ public class PlayerMovement : NetworkBehaviour
         //Jumping
         if (controller.isGrounded)
         {
+            animator.SetBool("jumping", true);
             vSpeed = 0; // grounded character has vSpeed = 0...
             if (Input.GetKeyDown("space"))
             { // unless it jumps:
                 vSpeed = jumpSpeed;
             }
+        }
+        else
+        {
+            animator.SetBool("jumping", false);
         }
 
         // apply gravity acceleration to vertical speed:
