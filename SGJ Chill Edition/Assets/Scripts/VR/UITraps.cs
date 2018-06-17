@@ -13,6 +13,6 @@ public class UITraps : MonoBehaviour
 
     private void Update()
     {
-        myUIText.text = "Traps placed: " + trapsPlaced;
+        myUIText.text = "Place five traps!";
     }
 }
