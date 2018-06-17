@@ -3,7 +3,7 @@ using UnityEngine.Networking;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioSync : NetworkBehaviour {
-    private AudioClip[] clips;
+    public AudioClip[] clips;
 
     private AudioSource src;
 
