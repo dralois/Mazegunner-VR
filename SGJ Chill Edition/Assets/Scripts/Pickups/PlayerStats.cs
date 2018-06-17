@@ -32,6 +32,7 @@ public class PlayerStats : NetworkBehaviour
     private GameObject slowUI;
     private GameObject shieldUI;
     private GameObject lostUI;
+    private GameObject winUI;
 
     // Use this for initialization
     void Start()
@@ -60,6 +61,9 @@ public class PlayerStats : NetworkBehaviour
         shieldUI.SetActive(false);
 
         lostUI = can.transform.Find("Lost").gameObject;
+        lostUI.SetActive(false);
+
+        winUI = can.transform.Find("Win").gameObject;
         lostUI.SetActive(false);
     }
 
@@ -205,7 +209,17 @@ public class PlayerStats : NetworkBehaviour
 
     public void OnGameFinished(PlayerStats[] allStats)
     {
-        // TODO Display scores
+        livesUI[0].SetActive(false);
+        livesUI[1].SetActive(false);
+        livesUI[2].SetActive(false);
+
+        invisUI.SetActive(false);
+        speedUI.SetActive(false);
+        slowUI.SetActive(false);
+        shieldUI.SetActive(false);
+        lostUI.SetActive(false);
+
+        lostUI.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
