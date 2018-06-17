@@ -30,6 +30,9 @@ public class Turret : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private float LaserDuration = 0.25f;
+    [SerializeField]
+    private string[] ShootableLayers;
+
 
     public void GunActive(bool activated)
     {
@@ -67,7 +70,7 @@ public class Turret : MonoBehaviour, IPointerClickHandler
 
     public IEnumerator Shootright()
     {
-        RaycastHit[] hits = Physics.RaycastAll(new Ray(smallAnchorRight.position, transform.forward));
+        RaycastHit[] hits = Physics.RaycastAll(new Ray(smallAnchorRight.position, transform.forward), 200, LayerMask.GetMask(ShootableLayers));
 
         gameObject.GetComponent<LineRenderer>().SetPosition(0, hits[0].point);
         gameObject.GetComponent<LineRenderer>().SetPosition(1, bigAnchorRight.position);
@@ -82,7 +85,7 @@ public class Turret : MonoBehaviour, IPointerClickHandler
 
     public IEnumerator Shootleft()
     {
-        RaycastHit[] hits = Physics.RaycastAll(new Ray(smallAnchorLeft.position, transform.forward));
+        RaycastHit[] hits = Physics.RaycastAll(new Ray(smallAnchorLeft.position, transform.forward), 200, LayerMask.GetMask(ShootableLayers));
 
         gameObject.GetComponent<LineRenderer>().SetPosition(0, hits[0].point);
         gameObject.GetComponent<LineRenderer>().SetPosition(1, bigAnchorLeft.position);
