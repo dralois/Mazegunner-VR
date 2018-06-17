@@ -3279,6 +3279,19 @@ ModelImporter:
     106546: Plane_001
     106548: Plane_002
     106550: Plane_003
+    106552: MS_corner_in_424
+    106554: MS_corner_out_112
+    106556: MS_deadEnd_in_078
+    106558: MS_deadEnd_out_021
+    106560: MS_ground_flat_1226
+    106562: MS_ground_trap_001
+    106564: MS_pillar_371
+    106566: MS_trap_spikes_001
+    106568: MS_wall_1151
+    106570: Tower
+    106572: Tower_001
+    106574: Tower_002
+    106576: Tower_003
     400000: //RootNode
     400002: MS_corner_in
     400004: MS_corner_in_001
@@ -6555,8 +6568,30 @@ ModelImporter:
     406546: Plane_001
     406548: Plane_002
     406550: Plane_003
+    406552: MS_corner_in_424
+    406554: MS_corner_out_112
+    406556: MS_deadEnd_in_078
+    406558: MS_deadEnd_out_021
+    406560: MS_ground_flat_1226
+    406562: MS_ground_trap_001
+    406564: MS_pillar_371
+    406566: MS_trap_spikes_001
+    406568: MS_wall_1151
+    406570: Tower
+    406572: Tower_001
+    406574: Tower_002
+    406576: Tower_003
     2100000: 01_-_Default
     2100002: unnamed
+    2100004: 01_-_Default_009
+    2100006: 01_-_Default_008
+    2100008: 01_-_Default_007
+    2100010: 01_-_Default_006
+    2100012: 01_-_Default_005
+    2100014: 01_-_Default_004
+    2100016: 01_-_Default_003
+    2100018: 01_-_Default_002
+    2100020: 01_-_Default_001
     2300000: MS_corner_in
     2300002: MS_corner_in_001
     2300004: MS_corner_in_002
@@ -9832,6 +9867,19 @@ ModelImporter:
     2306544: Plane_001
     2306546: Plane_002
     2306548: Plane_003
+    2306550: MS_corner_in_424
+    2306552: MS_corner_out_112
+    2306554: MS_deadEnd_in_078
+    2306556: MS_deadEnd_out_021
+    2306558: MS_ground_flat_1226
+    2306560: MS_ground_trap_001
+    2306562: MS_pillar_371
+    2306564: MS_trap_spikes_001
+    2306566: MS_wall_1151
+    2306568: Tower
+    2306570: Tower_001
+    2306572: Tower_002
+    2306574: Tower_003
     3300000: MS_corner_in
     3300002: MS_corner_in_001
     3300004: MS_corner_in_002
@@ -13107,6 +13155,19 @@ ModelImporter:
     3306544: Plane_001
     3306546: Plane_002
     3306548: Plane_003
+    3306550: MS_corner_in_424
+    3306552: MS_corner_out_112
+    3306554: MS_deadEnd_in_078
+    3306556: MS_deadEnd_out_021
+    3306558: MS_ground_flat_1226
+    3306560: MS_ground_trap_001
+    3306562: MS_pillar_371
+    3306564: MS_trap_spikes_001
+    3306566: MS_wall_1151
+    3306568: Tower
+    3306570: Tower_001
+    3306572: Tower_002
+    3306574: Tower_003
     4300000: MS_pillar_370
     4300002: MS_pillar_369
     4300004: MS_pillar_368
@@ -16382,6 +16443,19 @@ ModelImporter:
     4306544: MS_corner_in
     4306546: MS_ground_flat
     4306548: MS_deadEnd_in
+    4306550: MS_trap_spikes_001
+    4306552: MS_pillar_371
+    4306554: MS_ground_trap_001
+    4306556: MS_ground_flat_1226
+    4306558: MS_deadEnd_in_078
+    4306560: MS_deadEnd_out_021
+    4306562: MS_corner_out_112
+    4306564: MS_wall_1151
+    4306566: MS_corner_in_424
+    4306568: Tower_003
+    4306570: Tower_002
+    4306572: Tower
+    4306574: Tower_001
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs

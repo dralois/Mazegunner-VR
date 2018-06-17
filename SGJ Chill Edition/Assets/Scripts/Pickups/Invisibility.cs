@@ -18,7 +18,7 @@ public class Invisibility : NetworkBehaviour {
 	}
     private void OnTriggerEnter(Collider other) {
         PlayerStats ps = other.gameObject.GetComponent<PlayerStats>();
-        ps.Invisibility(time);
+        ps.CmdInvisibility(time);
 
         Destroy(gameObject);
     }

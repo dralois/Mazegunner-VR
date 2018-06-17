@@ -46,11 +46,7 @@ public class PlayerStats : NetworkBehaviour {
             invisibilityTimer -= Time.deltaTime;
 
             if (invisibilityTimer < 0.0f) {
-                gameObject.layer = originalLayer;
-
-                if (shieldTimer > 0.0f) {
-                    shield.layer = originalLayer;
-                }
+                CmdResetInvisibility();
             }
         }
     }
@@ -64,7 +60,17 @@ public class PlayerStats : NetworkBehaviour {
         movement.SlowDown(amount, time);
     }
 
-    public void Invisibility(float time) {
+    [Command]
+    public void CmdResetInvisibility() {
+        gameObject.layer = originalLayer;
+
+        if (shieldTimer > 0.0f) {
+            shield.layer = originalLayer;
+        }
+    }
+
+    [Command]
+    public void CmdInvisibility(float time) {
         invisibilityTimer = time;
         gameObject.layer = 9; // Only PC layer
     }
