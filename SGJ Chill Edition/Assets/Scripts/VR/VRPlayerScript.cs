@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public class VRPlayerScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class VRPlayerScript : MonoBehaviour
     private GameObject currTurret;
     // Aktuell zu platzierende Falle
     private GameObject currTrap;
+    private int trapCount;
 
     public bool inTurretMode()
     {
@@ -112,9 +114,16 @@ public class VRPlayerScript : MonoBehaviour
                 if (myHits.Length > 0)
                 {
                     // Boden getroffen
-                    if (myHits[0].transform.tag.Equals("Ground"))
+                    if (myHits[0].transform.tag.Equals("Ground") && ((ExtendedNetworkManager) NetworkManager.singleton).gameManager.getTrapCount() < trapCount)
                     {
-                        currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);                
+                        trapCount++;
+                        currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);
+                    }
+                    // Alle Fallen platziert
+                    else if(((ExtendedNetworkManager)NetworkManager.singleton).gameManager.getTrapCount() == trapCount)
+                    {
+                        trapCount++;
+                        ((ExtendedNetworkManager)NetworkManager.singleton).gameManager.trapsPlaced();
                     }
                 }
             }
