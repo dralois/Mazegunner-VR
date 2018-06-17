@@ -3312,6 +3312,10 @@ ModelImporter:
     106612: Plane.001
     106614: Plane.002
     106616: Plane.003
+    106618: Tower
+    106620: Tower.001
+    106622: Tower.002
+    106624: Tower.003
     400000: //RootNode
     400002: MS_corner_in.001
     400004: MS_corner_in.002
@@ -6621,8 +6625,19 @@ ModelImporter:
     406612: Plane.001
     406614: Plane.002
     406616: Plane.003
+    406618: Tower
+    406620: Tower.001
+    406622: Tower.002
+    406624: Tower.003
     2100000: 01 - Default
     2100002: No Name
+    2100004: 01 - Default.008
+    2100006: 01 - Default.002
+    2100008: 01 - Default.003
+    2100010: 01 - Default.006
+    2100012: 01 - Default.001
+    2100014: 01 - Default.005
+    2100016: 01 - Default.004
     2300000: MS_corner_in.001
     2300002: MS_corner_in.002
     2300004: MS_corner_in.003
@@ -9931,6 +9946,10 @@ ModelImporter:
     2306610: Plane.001
     2306612: Plane.002
     2306614: Plane.003
+    2306616: Tower
+    2306618: Tower.001
+    2306620: Tower.002
+    2306622: Tower.003
     3300000: MS_corner_in.001
     3300002: MS_corner_in.002
     3300004: MS_corner_in.003
@@ -13239,6 +13258,10 @@ ModelImporter:
     3306610: Plane.001
     3306612: Plane.002
     3306614: Plane.003
+    3306616: Tower
+    3306618: Tower.001
+    3306620: Tower.002
+    3306622: Tower.003
     4300000: MS_wall.163
     4300002: MS_pillar.114
     4300004: MS_corner_in.048
@@ -13256,6 +13279,7 @@ ModelImporter:
     4300028: MS_deadEnd_in.077
     4300030: MS_deadEnd_out.020
     4300032: MS_corner_in.006
+    4300034: Tower.003
     6400000: MS_corner_in.001
     6400002: MS_corner_in.002
     6400004: MS_corner_in.003
@@ -16564,6 +16588,10 @@ ModelImporter:
     6406610: Plane.001
     6406612: Plane.002
     6406614: Plane.003
+    6406616: Tower
+    6406618: Tower.001
+    6406620: Tower.002
+    6406622: Tower.003
   externalObjects:
   - first:
       type: UnityEngine:Material
