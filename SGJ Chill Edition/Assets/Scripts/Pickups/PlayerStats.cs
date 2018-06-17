@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerStats : NetworkBehaviour {
 
@@ -10,10 +11,18 @@ public class PlayerStats : NetworkBehaviour {
     private GameObject shield;
 
     float invisibilityTimer = 0.0f;
+    float speedboostTimer = 0.0f;
+    float slowdownTimer = 0.0f;
 
     private float health;
     public float fullHealth = 100.0f;
     private int lives = 3;
+
+    private GameObject[] livesUI = new GameObject[3];
+    private GameObject invisibilityUI;
+    private GameObject speedboostUI;
+    private GameObject shieldUI;
+    private GameObject slowdownUI;
 
     float score;
     float gameDuration;
@@ -26,6 +35,21 @@ public class PlayerStats : NetworkBehaviour {
         health = fullHealth;
         originalLayer = gameObject.layer;
         movement = GetComponent<PlayerMovement>();
+
+        Canvas can = GetComponentInChildren<Canvas>();
+        livesUI[0] = can.transform.Find("Live1").gameObject;
+        livesUI[1] = can.transform.Find("Live2").gameObject;
+        livesUI[2] = can.transform.Find("Live0").gameObject;
+        invisibilityUI = can.transform.Find("Invisibility").gameObject;
+        speedboostUI = can.transform.Find("SpeedBoost").gameObject;
+        shieldUI = can.transform.Find("Shield").gameObject;
+
+        slowdownUI = can.transform.Find("SlowDown").gameObject;
+
+        invisibilityUI.SetActive(false);
+        speedboostUI.SetActive(false);
+        shieldUI.SetActive(false);
+        slowdownUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,6 +62,7 @@ public class PlayerStats : NetworkBehaviour {
             shieldTimer -= Time.deltaTime;
 
             if (shieldTimer < 0.0f) {
+                shieldUI.SetActive(false);
                 Destroy(shield);
             }
         }
@@ -46,18 +71,39 @@ public class PlayerStats : NetworkBehaviour {
             invisibilityTimer -= Time.deltaTime;
 
             if (invisibilityTimer < 0.0f) {
+                invisibilityUI.SetActive(false);
                 CmdResetInvisibility();
+            }
+        }
+
+        if (speedboostTimer > 0.0f) {
+            speedboostTimer -= Time.deltaTime;
+
+            if (speedboostTimer < 0.0f) {
+                speedboostUI.SetActive(false);
+            }
+        }
+
+        if (slowdownTimer > 0.0f) {
+            slowdownTimer -= Time.deltaTime;
+
+            if (slowdownTimer < 0.0f) {
+                slowdownUI.SetActive(false);
             }
         }
     }
 
     public void SpeedBoost(float amount, float time) {
+        speedboostTimer = time;
         movement.Speedbuff(amount, time);
+        speedboostUI.SetActive(true);
     }
 
     //Slowdown
     public void SpeedBuff(float amount, float time) {
+        slowdownTimer = time;
         movement.SlowDown(amount, time);
+        slowdownUI.SetActive(true);
     }
 
     [Command]
@@ -73,6 +119,8 @@ public class PlayerStats : NetworkBehaviour {
     public void CmdInvisibility(float time) {
         invisibilityTimer = time;
         gameObject.layer = 9; // Only PC layer
+
+        invisibilityUI.SetActive(true);
     }
 
     public void Shield(float time) {
@@ -82,10 +130,12 @@ public class PlayerStats : NetworkBehaviour {
             //shield.GetComponent<Renderer>().enabled = false;
             shield.layer = 9; // Only PC layer
         }
+        shieldUI.SetActive(true);
     }
 
     public void Kill() {
         Debug.Log("You died!");
+        Destroy(livesUI[lives-1]);
         lives--;
         Respawn(active:(lives > 0));
     }
