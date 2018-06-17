@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
 
-
-
 public class VRPlayerScript : MonoBehaviour
 {
-    private bool isInTrapPlacementMode = true;
-
     // Übersichtsposition
     [SerializeField]
     private Transform godPosition;
-
+    // Falle
+    [SerializeField]
+    private GameObject trapPrefab;
+    // Armpointer
+    [SerializeField]
+    private GvrLaserPointer myPointer;
     // Aktuell aktives Turret
     private GameObject currTurret;
+    // Aktuell zu platzierende Falle
+    private GameObject currTrap;
 
     public bool inTurretMode()
     {
         return (currTurret != null);
+    }
+
+    public bool inPlacementMode()
+    {
+        return (currTrap != null);
     }
 
     public void TurretMode(GameObject pi_Turret)
@@ -26,7 +34,6 @@ public class VRPlayerScript : MonoBehaviour
             UnityEngine.XR.InputTracking.disablePositionalTracking = false;
             gameObject.GetComponentInChildren<Light>().enabled = true;
             transform.SetPositionAndRotation(godPosition.position, godPosition.rotation);
-            currTurret.GetComponent<Turret>().GunActive(false);
         }
         // Vorheriges Turret zurücksetzen
         if (currTurret != null)
@@ -51,16 +58,14 @@ public class VRPlayerScript : MonoBehaviour
 
     private void Update()
     {
-        //TODO: handle isInTrapPlacementMode!!!!
-
-        // Deaktiviere ggf. Turret
-        if (GvrControllerInput.AppButton || Input.GetMouseButtonDown(1))
-        {
-            TurretMode(null);
-        }
         // Aktuell im Turret
-        if(currTurret != null)
+        if(inTurretMode())
         {
+            // Deaktiviere ggf. Turret
+            if (GvrControllerInput.AppButtonDown || Input.GetMouseButtonDown(1))
+            {
+                TurretMode(null);
+            }
             // Aktiviere schießen
             if(GvrControllerInput.ClickButton || Input.GetMouseButton(0))
             {
@@ -75,15 +80,52 @@ public class VRPlayerScript : MonoBehaviour
             currTurret.transform.rotation = gameObject.GetComponentInChildren<Camera>().transform.rotation;
             gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
+        else if (inPlacementMode())
+        {
+            // Falle loslassen
+            if(GvrControllerInput.AppButtonUp || Input.GetMouseButtonUp(1))
+            {
+                currTrap = null;
+            }
+            // Falle bewegen
+            else
+            {               
+                RaycastHit[] myHits = Physics.RaycastAll(myPointer.GetRayForDistance(100).ray, 100, LayerMask.GetMask("Default"));
+                // Etwas getroffen
+                if (myHits.Length > 0)
+                {
+                    // Boden getroffen
+                    if (myHits[0].transform.tag.Equals("Ground"))
+                    {
+                        currTrap.transform.position = myHits[0].transform.position;
+                    }
+                }
+            }
+        }
+        else
+        {
+            // Click Button wird bereits für Teleportieren genutzt
+            if (GvrControllerInput.AppButtonDown || Input.GetMouseButtonDown(1))
+            {
+                RaycastHit[] myHits = Physics.RaycastAll(myPointer.GetRayForDistance(100).ray, 100, LayerMask.GetMask("Default"));
+                // Etwas getroffen
+                if (myHits.Length > 0)
+                {
+                    // Boden getroffen
+                    if (myHits[0].transform.tag.Equals("Ground"))
+                    {
+                        currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);                
+                    }
+                }
+            }
+        }
     }
 
     public void OnGameStarted(int pcPlayerLives, float timeInSeconds){
-        isInTrapPlacementMode = false;
+ 
     }
 
     public void OnGameFinished(PlayerStats[] pcPlayers){
-        // TODO: get Scores from all other players and display them.
+
     }
-
-
 }

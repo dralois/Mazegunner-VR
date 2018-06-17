@@ -5,13 +5,8 @@ using UnityEngine.Networking;
 
 public class LocalPlayerCheck : NetworkBehaviour
 {
-
-    public override void OnStartClient()
+    void Start()
     {
-        //print(isLocalPlayer);
-        //print(isServer);
-        //print(isClient); 
-
         gameObject.SetActive(isLocalPlayer);
     }
 }

@@ -18,6 +18,17 @@ public class GameManager : NetworkBehaviour {
 	public PlayerStats[] playerStats;
 	public VRPlayerScript vrPlayer;
 	public GamePhase phase = GamePhase.PRE_GAME;
+	public int numberOfTraps = 4;
+
+	// VR Player gets how many traps they can place
+	public int getTrapCount(){
+		return numberOfTraps;
+	}
+
+	// VR Player calls this when they are ready to start the game
+	public void trapsPlaced(){
+		SetupPhase(GamePhase.GAME);
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -40,19 +51,13 @@ public class GameManager : NetworkBehaviour {
 		switch(phase) {
 			case GamePhase.PRE_GAME:
 			//make sure the spawnWalls are all enabled:
-			foreach(GameObject sw in spawnWalls){
-				if(!sw.activeSelf){
-					sw.SetActive(true);
-				}
-			}
+			//TODO or reload Scene
 			break;
-			
+
 			case GamePhase.GAME:
 			//disable all spawnWalls:
 			foreach(GameObject sw in spawnWalls){
-				if(sw.activeSelf){
-					sw.SetActive(false);
-				}
+				Destroy(sw);
 			}
 			//collect players
 			vrPlayer = GameObject.FindObjectOfType<VRPlayerScript>();
