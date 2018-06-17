@@ -50,7 +50,7 @@ public class PlayerStats : NetworkBehaviour
         livesUI[2].SetActive(true);
 
         invisUI = can.transform.Find("Invisibility").gameObject;
-        speedUI = can.transform.Find("SpeedUp").gameObject;
+        speedUI = can.transform.Find("SpeedBoost").gameObject;
         slowUI = can.transform.Find("SlowDown").gameObject;
         shieldUI = can.transform.Find("Shield").gameObject;
 
