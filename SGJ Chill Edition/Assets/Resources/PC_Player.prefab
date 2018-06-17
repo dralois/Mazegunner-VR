@@ -606,8 +606,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1975941909397822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.924, y: 0.14, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4244384431121156}
   - {fileID: 4802310235811162}
@@ -880,7 +880,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1171154041280452}
   modelMaxRotationSpeed: 360
-  movementSpeed: {x: 2, y: 2, z: 2}
+  movementSpeed: {x: 0.3, y: 0.3, z: 0.3}
   xMovementInputString: Horizontal
   yMovementInputString: 
   zMovementInputString: Vertical
@@ -1007,8 +1007,8 @@ MonoBehaviour:
   invertRotationY: 0
   invertRotationZ: 0
   animator: {fileID: 95340155508152732}
-  jumpSpeed: 4
-  gravity: 9.8
+  jumpSpeed: 1.5
+  gravity: 0.0001
   speedBoost: 0
   sprintDuration: 0
   recoveryDebuff: 0
@@ -1082,7 +1082,7 @@ SkinnedMeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1943345834626954}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1158,7 +1158,7 @@ CharacterController:
   m_Height: 0.87
   m_Radius: 0.2
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.03
   m_SkinWidth: 0.008
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.42, z: 0}
