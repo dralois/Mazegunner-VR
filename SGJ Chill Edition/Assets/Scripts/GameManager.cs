@@ -13,7 +13,7 @@ public class GameManager : NetworkBehaviour {
 
 	public int livesPerPlayer = 3;
 	public float gameDurationSeconds = 300;
-	private float gameTimeLeft = -999;
+	private float gameTimeLeft = 300;
 	public GameObject[] spawnWalls;
 	public PlayerStats[] playerStats;
 	public VRPlayerScript vrPlayer;
