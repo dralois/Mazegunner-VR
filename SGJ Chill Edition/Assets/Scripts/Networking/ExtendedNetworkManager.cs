@@ -29,7 +29,7 @@ public class ExtendedNetworkManager : NetworkManager {
 
         GameObject player;
         if (isVRPlayer) {
-            player = Instantiate(Resources.Load("VR_Player", typeof(GameObject)), VRPlayerSpawn.transform) as GameObject;
+            player = Instantiate(Resources.Load("VRPlayer", typeof(GameObject)), VRPlayerSpawn.transform) as GameObject;
         } else {
             player = Instantiate(Resources.Load("PC_Player", typeof(GameObject)), PCPlayerSpawns.getPlayerSpawn(), Quaternion.identity) as GameObject;
         }
