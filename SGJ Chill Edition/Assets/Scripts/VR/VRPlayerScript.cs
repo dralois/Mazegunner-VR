@@ -114,13 +114,14 @@ public class VRPlayerScript : MonoBehaviour
                 if (myHits.Length > 0)
                 {
                     // Boden getroffen
-                    if (myHits[0].transform.tag.Equals("Ground") && ((ExtendedNetworkManager) NetworkManager.singleton).gameManager.getTrapCount() < trapCount)
+                    if (myHits[0].transform.tag.Equals("Ground") &&
+                        ((ExtendedNetworkManager) NetworkManager.singleton).gameManager.getTrapCount() < trapCount)
                     {
                         trapCount++;
                         currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);
                     }
                     // Alle Fallen platziert
-                    else if(((ExtendedNetworkManager)NetworkManager.singleton).gameManager.getTrapCount() == trapCount)
+                    else if (((ExtendedNetworkManager)NetworkManager.singleton).gameManager.getTrapCount() == trapCount)
                     {
                         trapCount++;
                         ((ExtendedNetworkManager)NetworkManager.singleton).gameManager.trapsPlaced();

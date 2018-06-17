@@ -544,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7850fff25d831334a8848b9794bb62f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  godPosition: {fileID: 0}
+  godPosition: {fileID: 4194492178961732, guid: 6968ed7588cf6e147beb28e34c62188d,
+    type: 2}
   trapPrefab: {fileID: 1509405132927628, guid: e3f2d9af33cbd3444a2adc34fe0b0b4f, type: 2}
   myPointer: {fileID: 114432050985971582}
 --- !u!120 &120579877426927472
