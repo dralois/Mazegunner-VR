@@ -72,6 +72,11 @@ public class Turret : MonoBehaviour, IPointerClickHandler
     {
         RaycastHit[] hits = Physics.RaycastAll(new Ray(smallAnchorRight.position, transform.forward), 200, LayerMask.GetMask(ShootableLayers));
 
+        if(hits[0].transform.tag.Equals("Player"))
+        {
+            print("player hit");
+        }
+
         gameObject.GetComponent<LineRenderer>().SetPosition(0, hits[0].point);
         gameObject.GetComponent<LineRenderer>().SetPosition(1, bigAnchorRight.position);
 
