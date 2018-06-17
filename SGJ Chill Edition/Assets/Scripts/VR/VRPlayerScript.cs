@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-
-
 public class VRPlayerScript : MonoBehaviour
 {
     // Übersichtsposition
