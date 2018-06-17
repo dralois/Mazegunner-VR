@@ -546,6 +546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   godPosition: {fileID: 0}
   trapPrefab: {fileID: 1509405132927628, guid: e3f2d9af33cbd3444a2adc34fe0b0b4f, type: 2}
+  myPointer: {fileID: 114432050985971582}
 --- !u!120 &120579877426927472
 LineRenderer:
   m_ObjectHideFlags: 1

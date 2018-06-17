@@ -4,14 +4,16 @@ using UnityEngine.EventSystems;
 public class VRPlayerTeleport : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler {
 
     [SerializeField]
-    private GameObject player;
+    private GameObject myPlayer;
     [SerializeField]
     private GameObject teleportPoint;
     private GameObject myTeleportPoint;
 
     public void OnPointerDown(PointerEventData ped)
     {
-        if (GvrControllerInput.ClickButton && !player.GetComponent<VRPlayerScript>().inTurretMode())
+        if (GvrControllerInput.ClickButton && 
+            !myPlayer.GetComponent<VRPlayerScript>().inTurretMode() && 
+            !myPlayer.GetComponent<VRPlayerScript>().inPlacementMode())
         {
             myTeleportPoint = Instantiate(teleportPoint, ped.pointerCurrentRaycast.worldPosition, teleportPoint.transform.rotation);
         }
@@ -27,12 +29,12 @@ public class VRPlayerTeleport : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData ped)
     {
-        if (ped.pointerCurrentRaycast.isValid)
+        if (myTeleportPoint != null)
         {
-            player.transform.position = new Vector3(myTeleportPoint.transform.position.x,
-                                                    player.transform.position.y,
+            myPlayer.transform.position = new Vector3(myTeleportPoint.transform.position.x,
+                                                    myPlayer.transform.position.y,
                                                     myTeleportPoint.transform.position.z);
+            Destroy(myTeleportPoint);        
         }
-        Destroy(myTeleportPoint);        
     }    
 }

@@ -4,20 +4,28 @@
 
 public class VRPlayerScript : MonoBehaviour
 {
-
     // Übersichtsposition
     [SerializeField]
     private Transform godPosition;
+    // Falle
     [SerializeField]
     private GameObject trapPrefab;
+    // Armpointer
+    [SerializeField]
+    private GvrLaserPointer myPointer;
     // Aktuell aktives Turret
     private GameObject currTurret;
     // Aktuell zu platzierende Falle
-    private GameObject currTrap; 
+    private GameObject currTrap;
 
     public bool inTurretMode()
     {
         return (currTurret != null);
+    }
+
+    public bool inPlacementMode()
+    {
+        return (currTrap != null);
     }
 
     public void TurretMode(GameObject pi_Turret)
@@ -74,15 +82,43 @@ public class VRPlayerScript : MonoBehaviour
             currTurret.transform.rotation = gameObject.GetComponentInChildren<Camera>().transform.rotation;
             gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
+        else if (inPlacementMode())
+        {
+            // Falle loslassen
+            if(GvrControllerInput.AppButtonUp || Input.GetMouseButtonUp(1))
+            {
+                currTrap = null;
+            }
+            // Falle bewegen
+            else
+            {               
+                RaycastHit[] myHits = Physics.RaycastAll(myPointer.GetRayForDistance(100).ray, 100, LayerMask.GetMask("Default"));
+                // Etwas getroffen
+                if (myHits.Length > 0)
+                {
+                    // Boden getroffen
+                    if (myHits[0].transform.tag.Equals("Ground"))
+                    {
+                        currTrap.transform.position = myHits[0].transform.position;
+                    }
+                }
+            }
+        }
         else
         {
             // Click Button wird bereits für Teleportieren genutzt
             if (GvrControllerInput.AppButtonDown || Input.GetMouseButtonDown(1))
             {
-                GvrLaserPointer myPointer = FindObjectOfType<GvrLaserPointer>();
-                GvrBasePointer.PointerRay myRay = myPointer.GetRayForDistance(100);
-                RaycastHit[] myHits = Physics.RaycastAll(myRay.ray, myRay.distanceFromStart, LayerMask.GetMask("Default"));
-                currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);
+                RaycastHit[] myHits = Physics.RaycastAll(myPointer.GetRayForDistance(100).ray, 100, LayerMask.GetMask("Default"));
+                // Etwas getroffen
+                if (myHits.Length > 0)
+                {
+                    // Boden getroffen
+                    if (myHits[0].transform.tag.Equals("Ground"))
+                    {
+                        currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);                
+                    }
+                }
             }
         }
     }
@@ -92,8 +128,6 @@ public class VRPlayerScript : MonoBehaviour
     }
 
     public void OnGameFinished(PlayerStats[] pcPlayers){
-        // TODO: get Scores from all other players and display them.
+
     }
-
-
 }
