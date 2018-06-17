@@ -27,9 +27,12 @@ public class VRPlayerTeleport : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public void OnPointerUp(PointerEventData ped)
     {
-        player.transform.position = new Vector3(myTeleportPoint.transform.position.x,
-                                                player.transform.position.y,
-                                                myTeleportPoint.transform.position.z);
+        if (ped.pointerCurrentRaycast.isValid)
+        {
+            player.transform.position = new Vector3(myTeleportPoint.transform.position.x,
+                                                    player.transform.position.y,
+                                                    myTeleportPoint.transform.position.z);
+        }
         Destroy(myTeleportPoint);        
     }    
 }
