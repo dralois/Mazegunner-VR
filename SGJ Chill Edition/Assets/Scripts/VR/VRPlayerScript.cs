@@ -4,14 +4,16 @@
 
 public class VRPlayerScript : MonoBehaviour
 {
-    private bool isInTrapPlacementMode = true;
 
     // Übersichtsposition
     [SerializeField]
     private Transform godPosition;
-
+    [SerializeField]
+    private GameObject trapPrefab;
     // Aktuell aktives Turret
     private GameObject currTurret;
+    // Aktuell zu platzierende Falle
+    private GameObject currTrap; 
 
     public bool inTurretMode()
     {
@@ -26,7 +28,6 @@ public class VRPlayerScript : MonoBehaviour
             UnityEngine.XR.InputTracking.disablePositionalTracking = false;
             gameObject.GetComponentInChildren<Light>().enabled = true;
             transform.SetPositionAndRotation(godPosition.position, godPosition.rotation);
-            currTurret.GetComponent<Turret>().GunActive(false);
         }
         // Vorheriges Turret zurücksetzen
         if (currTurret != null)
@@ -51,16 +52,14 @@ public class VRPlayerScript : MonoBehaviour
 
     private void Update()
     {
-        //TODO: handle isInTrapPlacementMode!!!!
-
-        // Deaktiviere ggf. Turret
-        if (GvrControllerInput.AppButton || Input.GetMouseButtonDown(1))
-        {
-            TurretMode(null);
-        }
         // Aktuell im Turret
-        if(currTurret != null)
+        if(inTurretMode())
         {
+            // Deaktiviere ggf. Turret
+            if (GvrControllerInput.AppButtonDown || Input.GetMouseButtonDown(1))
+            {
+                TurretMode(null);
+            }
             // Aktiviere schießen
             if(GvrControllerInput.ClickButton || Input.GetMouseButton(0))
             {
@@ -75,10 +74,21 @@ public class VRPlayerScript : MonoBehaviour
             currTurret.transform.rotation = gameObject.GetComponentInChildren<Camera>().transform.rotation;
             gameObject.GetComponentInChildren<Camera>().transform.position = currTurret.GetComponent<Turret>().playerPos.position;            
         }
+        else
+        {
+            // Click Button wird bereits für Teleportieren genutzt
+            if (GvrControllerInput.AppButtonDown || Input.GetMouseButtonDown(1))
+            {
+                GvrLaserPointer myPointer = FindObjectOfType<GvrLaserPointer>();
+                GvrBasePointer.PointerRay myRay = myPointer.GetRayForDistance(100);
+                RaycastHit[] myHits = Physics.RaycastAll(myRay.ray, myRay.distanceFromStart, LayerMask.GetMask("Default"));
+                currTrap = Instantiate(trapPrefab, myHits[0].transform.position, Quaternion.identity);
+            }
+        }
     }
 
     public void OnGameStarted(int pcPlayerLives, float timeInSeconds){
-        isInTrapPlacementMode = false;
+ 
     }
 
     public void OnGameFinished(PlayerStats[] pcPlayers){
