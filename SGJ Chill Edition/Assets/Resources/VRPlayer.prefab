@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 124350509058479232}
   - component: {fileID: 92458045346932710}
   - component: {fileID: 81937296594955252}
+  - component: {fileID: 45770926144210314}
   m_Layer: 0
   m_Name: VRCamera
   m_TagString: MainCamera
@@ -351,6 +352,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894994211985792}
   m_Mesh: {fileID: 4300000, guid: 581a0d1f069aa2d41b4112fb6b01244e, type: 3}
+--- !u!45 &45770926144210314
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1958493165338990}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 68386e965eafff74c94378629217b904, type: 2}
 --- !u!81 &81937296594955252
 AudioListener:
   m_ObjectHideFlags: 1
