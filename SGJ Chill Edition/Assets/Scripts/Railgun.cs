@@ -9,7 +9,7 @@ public class Railgun : MonoBehaviour {
 
     public AudioClip railgun_activate;
     Animator animator;
-    AudioSource _audio;
+    AudioSync _audio;
 
     private bool _shooting = false;
     private bool _active = false;
@@ -26,7 +26,7 @@ public class Railgun : MonoBehaviour {
 		get {return _active;}
 		set {
 			if(value && !_active &&  railgun_activate != null){
-				_audio.PlayOneShot(railgun_activate);
+				//_audio.PlaySound
 			}
 			animator.SetBool("activated", value);
 			_active = value;
