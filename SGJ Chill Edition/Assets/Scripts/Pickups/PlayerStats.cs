@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerStats : NetworkBehaviour
-{
+public class PlayerStats : NetworkBehaviour {
 
     float shieldTimer = 0.0f;
     public GameObject shieldPrefab;
@@ -21,130 +20,104 @@ public class PlayerStats : NetworkBehaviour
 
     private int originalLayer;
 
-    private GameObject lastCheckPoints;
     private PlayerMovement movement;
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         health = fullHealth;
         originalLayer = gameObject.layer;
         movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (lives < 1)
-        {
+    void Update() {
+        if (lives < 1) {
             return;
         }
 
-        if (shieldTimer > 0.0f)
-        {
+        if (shieldTimer > 0.0f) {
             shieldTimer -= Time.deltaTime;
 
-            if (shieldTimer < 0.0f)
-            {
+            if (shieldTimer < 0.0f) {
                 Destroy(shield);
             }
         }
 
-        if (invisibilityTimer > 0.0f)
-        {
+        if (invisibilityTimer > 0.0f) {
             invisibilityTimer -= Time.deltaTime;
 
-            if (invisibilityTimer < 0.0f)
-            {
-                gameObject.layer = originalLayer;
-
-                if (shieldTimer > 0.0f)
-                {
-                    shield.layer = originalLayer;
-                }
+            if (invisibilityTimer < 0.0f) {
+                CmdResetInvisibility();
             }
         }
     }
 
-    public void SpeedBoost(float amount, float time)
-    {
+    public void SpeedBoost(float amount, float time) {
         movement.Speedbuff(amount, time);
     }
 
     //Slowdown
-    public void SpeedBuff(float amount, float time)
-    {
+    public void SpeedBuff(float amount, float time) {
         movement.SlowDown(amount, time);
     }
 
-    public void Invisibility(float time)
-    {
+    [Command]
+    public void CmdResetInvisibility() {
+        gameObject.layer = originalLayer;
+
+        if (shieldTimer > 0.0f) {
+            shield.layer = originalLayer;
+        }
+    }
+
+    [Command]
+    public void CmdInvisibility(float time) {
         invisibilityTimer = time;
         gameObject.layer = 9; // Only PC layer
     }
 
-    public void Shield(float time)
-    {
+    public void Shield(float time) {
         shieldTimer = time;
         shield = Instantiate(shieldPrefab, transform);
-        if (invisibilityTimer > 0.0f)
-        {
+        if (invisibilityTimer > 0.0f) {
             //shield.GetComponent<Renderer>().enabled = false;
             shield.layer = 9; // Only PC layer
         }
     }
 
-    public void Kill()
-    {
+    public void Kill() {
         Debug.Log("You died!");
         lives--;
-        Respawn(active: (lives > 0));
+        Respawn(active:(lives > 0));
     }
 
-    public void Damage(float amount)
-    {
+    public void Damage(float amount) {
         health -= amount;
 
-        if (health < 0.0f)
-        {
+        if (health < 0.0f) {
             Kill();
         }
     }
 
-    private void Respawn(bool active)
-    {
+    private void Respawn(bool active) {
         Debug.Log(active);
 
         health = fullHealth;
 
-        if (lastCheckPoints = null)
-        {
-            ExtendedNetworkManager nm = (ExtendedNetworkManager)NetworkManager.singleton;
-            transform.position = nm.PCPlayerSpawns.getPlayerSpawn();
-        }
+        ExtendedNetworkManager nm = (ExtendedNetworkManager) NetworkManager.singleton;
+        transform.position = nm.PCPlayerSpawns.getPlayerSpawn();
 
-        if (!active)
-        {
+        if (!active) {
             GetComponent<PlayerMovement>().enabled = false;
             // TODO Fail message
         }
     }
 
-    public void OnGameStarted(int lives, float gameDuration)
-    {
+    public void OnGameStarted(int lives, float gameDuration) {
         this.lives = lives;
         this.gameDuration = gameDuration;
     }
 
-    public void OnGameFinished(PlayerStats[] allStats)
-    {
+    public void OnGameFinished(PlayerStats[] allStats) {
         // TODO Display scores
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Checkpoint")
-        {
-            print("found Checkpoint");
-        }
     }
 }
