@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Turret
   - Checkpoint
+  - Ground
+  - Trap
   layers:
   - Default
   - TransparentFX
