@@ -13,6 +13,11 @@ public class VRPlayerScript : MonoBehaviour
     // Aktuell aktives Turret
     private GameObject currTurret;
 
+    public bool inTurretMode()
+    {
+        return (currTurret != null);
+    }
+
     public void TurretMode(GameObject pi_Turret)
     {
         // Turret Mode verlassen
