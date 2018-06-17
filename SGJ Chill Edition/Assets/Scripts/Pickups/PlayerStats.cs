@@ -11,6 +11,8 @@ public class PlayerStats : NetworkBehaviour
     private GameObject shield;
 
     float invisibilityTimer = 0.0f;
+    float speedTimer = 0.0f;
+    float slowTimer = 0.0f;
 
     private float health;
     public float fullHealth = 100.0f;
@@ -23,12 +25,42 @@ public class PlayerStats : NetworkBehaviour
 
     private GameObject lastCheckpoint;
     private PlayerMovement movement;
+
+    private GameObject[] livesUI = new GameObject[3];
+    private GameObject invisUI;
+    private GameObject speedUI;
+    private GameObject slowUI;
+    private GameObject shieldUI;
+    private GameObject lostUI;
+
     // Use this for initialization
     void Start()
     {
         health = fullHealth;
         originalLayer = gameObject.layer;
         movement = GetComponent<PlayerMovement>();
+
+        Canvas can = GetComponentInChildren<Canvas>();
+        livesUI[0] = can.transform.Find("Live0").gameObject;
+        livesUI[1] = can.transform.Find("Live1").gameObject;
+        livesUI[2] = can.transform.Find("Live2").gameObject;
+
+        livesUI[0].SetActive(true);
+        livesUI[1].SetActive(true);
+        livesUI[2].SetActive(true);
+
+        invisUI = can.transform.Find("Invisibility").gameObject;
+        speedUI = can.transform.Find("SpeedUp").gameObject;
+        slowUI = can.transform.Find("SlowDown").gameObject;
+        shieldUI = can.transform.Find("Shield").gameObject;
+
+        invisUI.SetActive(false);
+        speedUI.SetActive(false);
+        slowUI.SetActive(false);
+        shieldUI.SetActive(false);
+
+        lostUI = can.transform.Find("Lost").gameObject;
+        lostUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,6 +77,7 @@ public class PlayerStats : NetworkBehaviour
 
             if (shieldTimer < 0.0f)
             {
+                shieldUI.SetActive(false);
                 Destroy(shield);
             }
         }
@@ -56,19 +89,40 @@ public class PlayerStats : NetworkBehaviour
             if (invisibilityTimer < 0.0f)
             {
                 CmdResetInvisibility();
+                invisUI.SetActive(false);
+            }
+        }
+
+        if (speedTimer > 0.0f) {
+            speedTimer -= Time.deltaTime;
+
+            if (speedTimer < 0.0f) {
+                speedUI.SetActive(false);
+            }
+        }
+
+        if (slowTimer > 0.0f) {
+            slowTimer -= Time.deltaTime;
+
+            if (slowTimer < 0.0f) {
+                slowUI.SetActive(false);
             }
         }
     }
 
     public void SpeedBoost(float amount, float time)
     {
+        speedTimer = time;
         movement.Speedbuff(amount, time);
+        speedUI.SetActive(true);
     }
 
     //Slowdown
     public void SpeedBuff(float amount, float time)
     {
+        slowTimer = time;
         movement.SlowDown(amount, time);
+        slowUI.SetActive(true);
     }
 
     [Command]
@@ -87,6 +141,7 @@ public class PlayerStats : NetworkBehaviour
     {
         invisibilityTimer = time;
         gameObject.layer = 9; // Only PC layer
+        invisUI.SetActive(true);
     }
 
     public void Shield(float time)
@@ -98,12 +153,14 @@ public class PlayerStats : NetworkBehaviour
             //shield.GetComponent<Renderer>().enabled = false;
             shield.layer = 9; // Only PC layer
         }
+        shieldUI.SetActive(true);
     }
 
     public void Kill()
     {
         Debug.Log("You died!");
         lives--;
+        livesUI[lives].SetActive(false);        
         Respawn(active: (lives > 0));
     }
 
@@ -136,7 +193,7 @@ public class PlayerStats : NetworkBehaviour
         if (!active)
         {
             GetComponent<PlayerMovement>().enabled = false;
-            // TODO Fail message
+            lostUI.SetActive(true);
         }
     }
 
