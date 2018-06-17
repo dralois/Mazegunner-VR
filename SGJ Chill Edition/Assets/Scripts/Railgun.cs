@@ -1,49 +1,58 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Railgun : MonoBehaviour {
-    private const int sound_ready = 0;
-    private const int sound_shoot = 1;
+public class Railgun : MonoBehaviour
+{
 
     [SerializeField]
     private Turret myGun;
     [SerializeField]
     private bool shouldFire;
 
+    public AudioClip railgun_activate;
     Animator animator;
-    AudioSync _audio;
+    AudioSource _audio;
 
     private bool _shooting = false;
     private bool _active = false;
 
-    public bool isShooting {
-		get {return _shooting;}
-		set {
-			animator.SetBool("shooting", value);
-			_shooting = value;
-		}
-	}
+    public bool isShooting
+    {
+        get { return _shooting; }
+        set
+        {
+            animator.SetBool("shooting", value);
+            _shooting = value;
+        }
+    }
 
-	public bool isActive {
-		get {return _active;}
-		set {
-			if(value && !_active){
-                _audio.PlaySound(sound_ready);
-			}
-			animator.SetBool("activated", value);
-			_active = value;
-		}
-	}
+    public bool isActive
+    {
+        get { return _active; }
+        set
+        {
+            if (value && !_active && railgun_activate != null)
+            {
+                _audio.PlayOneShot(railgun_activate);
+            }
+            animator.SetBool("activated", value);
+            _active = value;
+        }
+    }
 
-	void Start () {
-		animator = GetComponent<Animator>();
-		_audio = GetComponent<AudioSync>();
-	}	
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+        _audio = GetComponent<AudioSource>();
+    }
 
-	public void FireLaser (string whichone) {
+    public void FireLaser(string whichone)
+    {
         if (shouldFire)
         {
             myGun.StartCoroutine("Shoot" + whichone);
-            _audio.PlaySound(sound_shoot);
+            _audio.Play();
         }
-	}
+    }
 }
