@@ -237,8 +237,10 @@ GameObject:
   - component: {fileID: 95308284660554778}
   - component: {fileID: 82066322823148438}
   - component: {fileID: 114596970876665986}
+  - component: {fileID: 114464804382597044}
+  - component: {fileID: 114318371254037716}
   m_Layer: 0
-  m_Name: AnimationComplete_ohnedrone
+  m_Name: Railgun_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,7 +372,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1914537665979130}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -15.42, y: -0.5724, z: -0.99}
+  m_LocalPosition: {x: -15.8927, y: -0.5, z: -3.8945}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 4547523200679738}
@@ -1147,6 +1149,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114318371254037716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1914537665979130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a6599f2548a324697d8d2d5e753646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: c40c223bf107ab34094e971e05ee029e, type: 3}
+  - {fileID: 8300000, guid: 18ae78085806af645abf10b905cb4790, type: 3}
+--- !u!114 &114464804382597044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1914537665979130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 194
+    i1: 119
+    i2: 94
+    i3: 164
+    i4: 6
+    i5: 233
+    i6: 155
+    i7: 100
+    i8: 24
+    i9: 107
+    i10: 150
+    i11: 137
+    i12: 19
+    i13: 114
+    i14: 157
+    i15: 12
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114596970876665986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1160,4 +1208,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myGun: {fileID: 0}
   shouldFire: 0
-  railgun_activate: {fileID: 8300000, guid: c40c223bf107ab34094e971e05ee029e, type: 3}
